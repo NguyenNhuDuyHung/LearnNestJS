@@ -24,7 +24,7 @@ export class Post {
   published: boolean
 
   @Field(() => User)
-  authors: User
+  author: User
 
   @Field(() => [Tag])
   tags: Tag[]

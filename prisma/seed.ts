@@ -24,7 +24,7 @@ async function main() {
     data: users,
   })
 
-  const posts = Array.from({ length: 50 }).map(() => ({
+  const posts = Array.from({ length: 500 }).map(() => ({
     title: faker.lorem.sentence(),
     slug: generateSlug(faker.lorem.sentence()),
     content: faker.lorem.paragraph(3),

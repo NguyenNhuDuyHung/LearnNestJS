@@ -39,7 +39,7 @@ type Post {
   thumbnail: String
   content: String!
   published: Boolean!
-  authors: User!
+  author: User!
   tags: [Tag!]!
   comments: [CommentEntity!]!
   createdAt: DateTime!
@@ -54,7 +54,9 @@ type AuthPayload {
 }
 
 type Query {
-  posts: [Post!]!
+  posts(skip: Float, take: Float): [Post!]!
+  postCount: Int!
+  getPostById(id: Int!): Post!
 }
 
 type Mutation {
