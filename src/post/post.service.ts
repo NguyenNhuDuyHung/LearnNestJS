@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { DEFAUt_PAGE_SIZE } from 'src/constants'
+import { DEFAULT_PAGE_SIZE } from 'src/constants'
 import { PrismaService } from 'src/prisma/prisma.service'
 
 @Injectable()
@@ -7,7 +7,7 @@ export class PostService {
   constructor(private prisma: PrismaService) {}
   async findAll({
     skip = 0,
-    take = DEFAUt_PAGE_SIZE,
+    take = DEFAULT_PAGE_SIZE,
   }: {
     skip?: number
     take?: number

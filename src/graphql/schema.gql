@@ -18,7 +18,7 @@ type CommentEntity {
   content: String!
   post: Post!
   author: User!
-  createAt: DateTime!
+  createdAt: DateTime!
 }
 
 """
@@ -57,10 +57,13 @@ type Query {
   posts(skip: Float, take: Float): [Post!]!
   postCount: Int!
   getPostById(id: Int!): Post!
+  getPostComments(postId: Int!, take: Int = 12, skip: Int = 0): [CommentEntity!]!
+  postCommentCount(postId: Int!): Int!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
+  createComment(createCommentInput: CreateCommentInput!): CommentEntity!
   signIn(signInInput: SignInInput!): AuthPayload!
 }
 
@@ -70,6 +73,11 @@ input CreateUserInput {
   email: String!
   bio: String
   avatar: String
+}
+
+input CreateCommentInput {
+  postId: Int!
+  content: String!
 }
 
 input SignInInput {
