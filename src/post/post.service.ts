@@ -32,4 +32,36 @@ export class PostService {
       },
     })
   }
+
+  async findByUser({
+    userId,
+    skip,
+    take,
+  }: {
+    userId: number
+    skip?: number
+    take?: number
+  }) {
+    const posts = await this.prisma.post.findMany({
+      where: { authorId: userId },
+      skip,
+      take,
+      select: {
+        id: true,
+        content: true,
+        published: true,
+        title: true,
+        slug: true,
+        thumbnail: true,
+        createdAt: true,
+        _count: { select: { comments: true, likes: true } },
+      },
+    })
+
+    return posts
+  }
+
+  async userPostCount(userId: number) {
+    return await this.prisma.post.count({ where: { authorId: userId } })
+  }
 }

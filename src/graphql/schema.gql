@@ -32,6 +32,11 @@ type Tag {
   posts: [Post!]!
 }
 
+type Count {
+  likes: Int!
+  comments: Int!
+}
+
 type Post {
   id: Int!
   title: String!
@@ -42,6 +47,7 @@ type Post {
   author: User!
   tags: [Tag!]!
   comments: [CommentEntity!]!
+  _count: Count!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -57,6 +63,8 @@ type Query {
   posts(skip: Float, take: Float): [Post!]!
   postCount: Int!
   getPostById(id: Int!): Post!
+  getUserPosts(skip: Int, take: Int): [Post!]!
+  userPostCount: Int!
   getPostComments(postId: Int!, take: Int = 12, skip: Int = 0): [CommentEntity!]!
   postCommentCount(postId: Int!): Int!
   postLikeCount(postId: Int!): Int!
